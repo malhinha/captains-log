@@ -93,6 +93,17 @@ UPDATE
 CREATE
 */
 
+app.post('/logs', (req, res) => {
+  // set right values per checkbox selection/non selection
+  if (req.body.shipIsBroken === 'on') {
+    req.body.shipIsBroken = true;
+  } else {
+    req.body.shipIsBroken = false;
+  }
+
+  res.send(req.body);
+});
+
 
 
 /*
