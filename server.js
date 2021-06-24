@@ -58,6 +58,28 @@ SEED ROUTES
 SEED SOME DATA
 */
 
+app.get('/log/seed', (req, res) => {
+  Log.create([
+    {
+      title:'Captain\'s Log, Stardate 43198.7',
+      entry:'The Enterprise remains in standard orbit while we investigate the tragedy which has struck the away team. Lieutenant Marla Aster, ship\'s archaeologist, has been killed on what should have been a routine mission. Whatever the explanation, it will not bring back a valued and trusted officer.',
+      shipIsBroken:false
+    },
+    {
+      title:'Captain\'s log, Stardate 43205.6',
+      entry:'We have arrived at Orelious IX to chart the battle in which the Menthars and Promellians fought to their mutual extinction. Among the ruins, we have found a relic – a Promellian battle cruiser that has withstood the centuries.',
+      shipIsBroken:false
+    },
+    {
+      title:'Captain\'s Log, Stardate 43349.2',
+      entry:'An unidentified distress signal has led to the discovery of a crashed Romulan vessel on the surface of Galorndon Core, a Federation planet. We have recovered one survivor, but Lieutenant Commander La Forge did not report back with the away team and is still missing.',
+      shipIsBroken:false
+    }
+  ], (err, data) => {
+    res.redirect('/log');
+  })
+});
+
 
 /*********************
 I.N.D.U.C.E.S. ROUTES
@@ -101,7 +123,16 @@ app.post('/logs', (req, res) => {
     req.body.shipIsBroken = false;
   }
 
-  res.send(req.body);
+  Log.create(req.body, (err, createdLog) => {
+    if(err){
+      res.status(404).send({
+        msg: err.message
+      })
+    } else {
+      console.log(createdLog);
+      res.redirect('/log');
+    }
+  })
 });
 
 
