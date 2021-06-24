@@ -89,6 +89,20 @@ I.N.D.U.C.E.S. ROUTES
 INDEX
 */
 
+app.get('/log/', (req, res) => {
+  Log.find({}, (err, foundLogs) => {
+    if (err) {
+      res.status(404).send({
+        msg: err.message
+      })
+    } else {
+      res.render('Index', {
+        logs: foundLogs
+      })
+    }
+  })
+});
+
 
 /*
 NEW
