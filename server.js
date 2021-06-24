@@ -76,7 +76,7 @@ app.get('/log/seed', (req, res) => {
       shipIsBroken:false
     }
   ], (err, data) => {
-    res.redirect('/log');
+    res.redirect('/logs');
   })
 });
 
@@ -89,7 +89,7 @@ I.N.D.U.C.E.S. ROUTES
 INDEX
 */
 
-app.get('/log/', (req, res) => {
+app.get('/logs/', (req, res) => {
   Log.find({}, (err, foundLogs) => {
     if (err) {
       res.status(404).send({
@@ -117,11 +117,43 @@ app.get('/logs/new', (req, res) => {
 DELETE
 */
 
+app.delete('/logs/:id', (req, res) => {
+  Log.findByIdAndDelete(req.params.id, (err, foundLog) => {
+    if(err) {
+      res.status(404).send({
+        msg: err.message
+      });
+    } else {
+      res.redirect('/logs')
+    }
+  });
+});
+
 
 
 /*
 UPDATE
 */
+
+app.put('/logs/:id/', (req, res) => {
+  // set right values per checkbox selection/non selection
+  if (req.body.isShipBroken === 'on') {
+    req.body.isShipBroken = true;
+  } else {
+    req.body.isShipBroken = false;
+  }
+  Log.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedLog) => {
+    if (err) {
+      res.status(404).send({
+        msg: err.message
+      })
+    } else {
+      res.render('Show', {
+        log: updatedLog
+      })
+    }
+  })
+});
 
 
 
@@ -144,7 +176,7 @@ app.post('/logs', (req, res) => {
       })
     } else {
       console.log(createdLog);
-      res.redirect('/log');
+      res.redirect('/logs');
     }
   })
 });
@@ -154,6 +186,20 @@ app.post('/logs', (req, res) => {
 /*
 EDIT
 */
+
+app.get('/logs/:id/edit', (req, res) => {
+  Log.findById(req.params.id, (err, foundLog) => {
+    if (err) {
+      res.status(404).send({
+        msg: err.message
+      })
+    } else {
+      res.render('Edit', {
+        log: foundLog
+      })
+    }
+  })
+});
 
 
 

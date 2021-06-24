@@ -10,6 +10,7 @@ class Show extends React.Component {
         <p>{log.entry}</p>
         <p>Ship Status: {log.isShipBroken? 'Disabled' : 'All systems go' }</p>
         <p>{`${log.createdAt}`}</p>
+        <p><a href="/logs">Back to list</a></p>
       </DefaultLayout>
     )
   }
