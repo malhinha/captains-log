@@ -5,11 +5,14 @@ class New extends React.Component {
   render () {
     return (
       <DefaultLayout title={"Add a New Log Entry"}>
-      <form action="/logs" method="POST">
-        Title: <input type="text" name="title" /><br/>
-        Entry: <textarea name="entry" rows="4" cols="50" /><br/>
-        Is the ship broken? <input type="checkbox" name="shipIsBroken" /><br/>
-        <input type="submit" name="" value="Create Log Entry"/>
+      <form action="/logs" method="POST" id="entry-form">
+        <p>Title:</p>
+        <input type="text" name="title" />
+        <p>Entry:</p>
+        <textarea name="entry" rows="4" cols="50" />
+        <p>Is the ship broken?</p>
+        <input type="checkbox" name="shipIsBroken" />
+        <button type="submit" name="" value="Create Log Entry" class="yellow" id="entry-submit">Submit</button>
       </form>
       </DefaultLayout>
     )

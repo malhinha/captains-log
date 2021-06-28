@@ -9,6 +9,7 @@ require('dotenv').config();
 /* EXPRESS SETUP */
 const express = require('express');
 const app = express();
+const methodOverride = require('method-override');
 const PORT = process.env.PORT || 3000;
 
 
@@ -46,8 +47,10 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({extended: true}));
 
 // needed for delete function
-const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
+
+// needed for serving css, js, html files
+app.use(express.static('public'));
 
 
 /*********************

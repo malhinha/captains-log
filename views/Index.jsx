@@ -11,17 +11,17 @@ class Index extends React.Component {
           {logs.map((log) => {
             return (
               <li key={log._id}>
-                <a href={`/logs/${log._id}`}>{log.title}</a>
+                <a href={`/logs/${log._id}`} class="log-link">{log.title}</a>
                 <form method="POST" action={`/logs/${log._id}?_method=DELETE`}>
-                  <input type="submit" value="DELETE"/>
+                  <button type="submit" value="DELETE" class="orange">Delete</button>
                 </form>
-                <a href={`/logs/${log._id}/edit`}>Edit This Entry</a>
+                <a href={`/logs/${log._id}/edit`} class="button small blue-lite">Edit This Entry</a>
               </li>
             )
           })}
         </ul>
         <nav>
-          <a href="/logs/new">Add a new log entry</a>
+          <a href="/logs/new" class="button small yellow">Add a new log entry</a>
         </nav>
       </DefaultLayout>
     )
