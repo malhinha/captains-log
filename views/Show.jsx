@@ -8,7 +8,7 @@ class Show extends React.Component {
     return (
       <DefaultLayout title={log.title}>
         <p>{log.entry}</p>
-        <p>Ship Status: {log.isShipBroken? 'Disabled' : 'All systems go' }</p>
+        <p>Ship Status: {log.shipIsBroken? 'Disabled' : 'All systems go' }</p>
         <p>{`${log.createdAt}`}</p>
         <p><a href="/logs" class="button small blue-lite">Back to list</a></p>
       </DefaultLayout>

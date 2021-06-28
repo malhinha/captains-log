@@ -140,10 +140,10 @@ UPDATE
 
 app.put('/logs/:id/', (req, res) => {
   // set right values per checkbox selection/non selection
-  if (req.body.isShipBroken === 'on') {
-    req.body.isShipBroken = true;
+  if (req.body.shipIsBroken === 'on') {
+    req.body.shipIsBroken = true;
   } else {
-    req.body.isShipBroken = false;
+    req.body.shipIsBroken = false;
   }
   Log.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedLog) => {
     if (err) {

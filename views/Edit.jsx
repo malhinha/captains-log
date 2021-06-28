@@ -12,7 +12,7 @@ class Edit extends React.Component {
         <textarea name="entry" rows="4" cols="50" defaultValue={this.props.log.entry} />
         <p>Is the ship broken?</p>
           {
-            this.props.log.isShipBroken
+            this.props.log.shipIsBroken
             ? <input type="checkbox" name="shipIsBroken" defaultChecked/>
             : <input type="checkbox" name="shipIsBroken" />
           }
